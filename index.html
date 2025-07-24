@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário - Gestão para Cabeleireiros</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            color: #6a4c93;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .feature {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 4px solid #8a63a2;
+            background-color: #f5f0f9;
+        }
+        .feature label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .feature input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .importance {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .importance label {
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        .importance select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            resize: vertical;
+            min-height: 80px;
+        }
+        button {
+            background-color: #6a4c93;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #5a3d7a;
+        }
+        .new-feature {
+            margin-top: 30px;
+            border-top: 2px dashed #ccc;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Questionário - Necessidades de Gestão para Cabeleireiros</h1>
+    <p>Avalie cada funcionalidade abaixo e indique sua importância para o seu trabalho:</p>
+
+    <form id="questionnaire">
+        <div class="section">
+            <h2>1. Gestão de Agenda</h2>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="agenda_individual">
+                    <strong>Agenda Individual</strong> - Bloqueio de horários conforme disponibilidade
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_agenda_individual">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="sincronizacao">
+                    <strong>Sincronização com a Agenda do Salão</strong> - Evitar conflitos de horários
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_sincronizacao">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="marcacao_online">
+                    <strong>Marcação Online</strong> - Link de agendamento direto via WhatsApp
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_marcacao_online">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Autonomia na Gestão de Clientes</h2>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="cadastro_clientes">
+                    <strong>Cadastro próprio de clientes</strong> - Independente do salão
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_cadastro_clientes">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="historico_servicos">
+                    <strong>Histórico de serviços realizados</strong> - Para fidelização
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_historico_servicos">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="ficha_tecnica">
+                    <strong>Ficha técnica capilar</strong> - Tratamentos, alergias, produtos usados
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_ficha_tecnica">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="mensagens_automaticas">
+                    <strong>Mensagens automáticas</strong> - Confirmação, lembretes, pós-atendimento
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_mensagens_automaticas">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Gestão de Produtos e Estoque Individual</h2>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="controle_produtos">
+                    <strong>Controle de produtos próprios</strong> - Evitar uso por outros profissionais
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_controle_produtos">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="alertas_estoque">
+                    <strong>Alertas de estoque baixo</strong> - Para repor itens essenciais
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_alertas_estoque">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="vendas_produtos">
+                    <strong>Registro de vendas diretas</strong> - Produtos vendidos aos clientes
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_vendas_produtos">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Ferramentas de Marketing Pessoal</h2>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="perfil_profissional">
+                    <strong>Perfil profissional online</strong> - Divulgação no salão/redes sociais
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_perfil_profissional">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="integracao_redes">
+                    <strong>Integração com Instagram e WhatsApp</strong> - Facilitar agendamento
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_integracao_redes">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Relatórios de Desempenho</h2>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="faturamento_mensal">
+                    <strong>Comparativo de faturamento mensal</strong>
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_faturamento_mensal">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="clientes_frequentes">
+                    <strong>Análise de clientes mais frequentes</strong> - Para fidelização
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_clientes_frequentes">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="horarios_rentaveis">
+                    <strong>Identificação de horários mais rentáveis</strong>
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_horarios_rentaveis">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Mobilidade (Acesso via Celular)</h2>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="app_registro">
+                    <strong>Registrar serviços em tempo real</strong>
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_app_registro">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <label>
+                    <input type="checkbox" name="feature" value="app_consulta">
+                    <strong>Consultar agenda dinamicamente</strong>
+                </label>
+                <div class="importance">
+                    <label>Importância:</label>
+                    <select name="importance_app_consulta">
+                        <option value="3">Alta</option>
+                        <option value="2" selected>Média</option>
+                        <option value="1">Baixa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="section new-feature">
+            <h2>7. Sugira novas funcionalidades</h2>
+            <p>Quais outras funcionalidades seriam úteis para você?</p>
+            <textarea name="novas_funcionalidades" placeholder="Descreva aqui novas funcionalidades que gostaria que o sistema tivesse..."></textarea>
+        </div>
+
+        <button type="submit">Enviar Respostas</button>
+    </form>
+
+    <script>
+        document.getElementById('questionnaire').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar respostas
+            const formData = new FormData(this);
+            const responses = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (key.startsWith('feature')) {
+                    responses.features = responses.features || [];
+                    responses.features.push(value);
+                } else if (key.startsWith('importance')) {
+                    responses.importances = responses.importances || {};
+                    responses.importances[key] = value;
+                } else if (key === 'novas_funcionalidades') {
+                    responses.newFeatures = value;
+                }
+            }
+            
+            // Aqui você pode enviar as respostas para um servidor
+            console.log('Respostas coletadas:', responses);
+            
+            // Feedback ao usuário
+            alert('Obrigado por responder o questionário! Suas respostas foram registradas.');
+            
+            // Limpar formulário (opcional)
+            this.reset();
+        });
+    </script>
+</body>
+</html>
