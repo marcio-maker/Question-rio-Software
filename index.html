@@ -5,404 +5,605 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionário - Gestão para Cabeleireiros</title>
     <style>
+        :root {
+            --primary-color: #6a4c93;
+            --secondary-color: #8a63a2;
+            --light-bg: #f5f0f9;
+            --white: #ffffff;
+            --text-color: #333333;
+            --border-color: #dddddd;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            color: var(--text-color);
             background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
         }
+        
+        .container {
+            max-width: 100%;
+            padding: 15px;
+        }
+        
         h1, h2 {
-            color: #6a4c93;
+            color: var(--primary-color);
         }
+        
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 0 10px;
+        }
+        
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        p.intro {
+            padding: 0 10px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
         .section {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .feature {
+            padding: 15px;
             margin-bottom: 15px;
-            padding: 10px;
-            border-left: 4px solid #8a63a2;
-            background-color: #f5f0f9;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+        
+        .feature {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-left: 4px solid var(--secondary-color);
+            background-color: var(--light-bg);
+        }
+        
         .feature label {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             cursor: pointer;
+            font-size: 0.9rem;
         }
+        
         .feature input[type="checkbox"] {
             margin-right: 10px;
-            transform: scale(1.2);
+            margin-top: 3px;
+            min-width: 18px;
+            min-height: 18px;
         }
+        
         .importance {
             margin-top: 8px;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
+        
         .importance label {
-            margin-right: 15px;
-            font-size: 14px;
+            margin-right: 10px;
+            font-size: 0.85rem;
+            flex: 0 0 70px;
         }
+        
         .importance select {
-            padding: 5px;
+            padding: 6px 8px;
             border-radius: 4px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            flex: 1;
+            min-width: 0;
         }
+        
         textarea {
             width: 100%;
             padding: 10px;
             border-radius: 4px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             margin-top: 10px;
             resize: vertical;
-            min-height: 80px;
+            min-height: 100px;
+            font-size: 0.9rem;
         }
+        
         button {
-            background-color: #6a4c93;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1rem;
             margin-top: 20px;
+            width: 100%;
+            font-weight: 500;
+            transition: background-color 0.3s;
         }
-        button:hover {
+        
+        button:hover, button:focus {
             background-color: #5a3d7a;
         }
+        
         .new-feature {
-            margin-top: 30px;
+            margin-top: 25px;
             border-top: 2px dashed #ccc;
-            padding-top: 20px;
+            padding-top: 15px;
+        }
+        
+        /* Melhorias para mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+                padding: 0 5px;
+            }
+            
+            h2 {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 12px;
+            }
+            
+            .feature {
+                padding: 8px;
+            }
+            
+            .importance label {
+                flex: 0 0 60px;
+                font-size: 0.8rem;
+            }
+            
+            button {
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Efeitos de interação */
+        .feature {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        input[type="checkbox"] {
+            accent-color: var(--primary-color);
+        }
+        
+        select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(106, 76, 147, 0.2);
+        }
+        
+        /* Modal de confirmação */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+        }
+        
+        .modal h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .modal button {
+            margin-top: 15px;
+            width: auto;
+            padding: 8px 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Questionário - Necessidades de Gestão para Cabeleireiros</h1>
-    <p>Avalie cada funcionalidade abaixo e indique sua importância para o seu trabalho:</p>
+    <div class="container">
+        <h1>Questionário - Necessidades de Gestão para Cabeleireiros</h1>
+        <p class="intro">Avalie cada funcionalidade abaixo e indique sua importância para o seu trabalho:</p>
 
-    <form id="questionnaire">
-        <div class="section">
-            <h2>1. Gestão de Agenda</h2>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="agenda_individual">
-                    <strong>Agenda Individual</strong> - Bloqueio de horários conforme disponibilidade
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_agenda_individual">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
+        <form id="questionnaire">
+            <!-- Seção 1: Gestão de Agenda -->
+            <div class="section">
+                <h2>1. Gestão de Agenda</h2>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="agenda_individual">
+                        <strong>Agenda Individual</strong> - Bloqueio de horários conforme disponibilidade
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_agenda_individual">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="sincronizacao">
+                        <strong>Sincronização com a Agenda do Salão</strong> - Evitar conflitos de horários
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_sincronizacao">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="marcacao_online">
+                        <strong>Marcação Online</strong> - Link de agendamento direto via WhatsApp
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_marcacao_online">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="sincronizacao">
-                    <strong>Sincronização com a Agenda do Salão</strong> - Evitar conflitos de horários
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_sincronizacao">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
+
+            <!-- Seção 2: Autonomia na Gestão de Clientes -->
+            <div class="section">
+                <h2>2. Autonomia na Gestão de Clientes</h2>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="cadastro_clientes">
+                        <strong>Cadastro próprio de clientes</strong> - Independente do salão
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_cadastro_clientes">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="historico_servicos">
+                        <strong>Histórico de serviços realizados</strong> - Para fidelização
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_historico_servicos">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="ficha_tecnica">
+                        <strong>Ficha técnica capilar</strong> - Tratamentos, alergias, produtos usados
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_ficha_tecnica">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="mensagens_automaticas">
+                        <strong>Mensagens automáticas</strong> - Confirmação, lembretes, pós-atendimento
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_mensagens_automaticas">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="marcacao_online">
-                    <strong>Marcação Online</strong> - Link de agendamento direto via WhatsApp
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_marcacao_online">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
+
+            <!-- Seção 3: Gestão de Produtos e Estoque Individual -->
+            <div class="section">
+                <h2>3. Gestão de Produtos e Estoque Individual</h2>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="controle_produtos">
+                        <strong>Controle de produtos próprios</strong> - Evitar uso por outros profissionais
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_controle_produtos">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="alertas_estoque">
+                        <strong>Alertas de estoque baixo</strong> - Para repor itens essenciais
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_alertas_estoque">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="vendas_produtos">
+                        <strong>Registro de vendas diretas</strong> - Produtos vendidos aos clientes
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_vendas_produtos">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+
+            <!-- Seção 4: Ferramentas de Marketing Pessoal -->
+            <div class="section">
+                <h2>4. Ferramentas de Marketing Pessoal</h2>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="perfil_profissional">
+                        <strong>Perfil profissional online</strong> - Divulgação no salão/redes sociais
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_perfil_profissional">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="integracao_redes">
+                        <strong>Integração com Instagram e WhatsApp</strong> - Facilitar agendamento
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_integracao_redes">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 5: Relatórios de Desempenho -->
+            <div class="section">
+                <h2>5. Relatórios de Desempenho</h2>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="faturamento_mensal">
+                        <strong>Comparativo de faturamento mensal</strong>
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_faturamento_mensal">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="clientes_frequentes">
+                        <strong>Análise de clientes mais frequentes</strong> - Para fidelização
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_clientes_frequentes">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="horarios_rentaveis">
+                        <strong>Identificação de horários mais rentáveis</strong>
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_horarios_rentaveis">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 6: Mobilidade (Acesso via Celular) -->
+            <div class="section">
+                <h2>6. Mobilidade (Acesso via Celular)</h2>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="app_registro">
+                        <strong>Registrar serviços em tempo real</strong>
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_app_registro">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <label>
+                        <input type="checkbox" name="feature" value="app_consulta">
+                        <strong>Consultar agenda dinamicamente</strong>
+                    </label>
+                    <div class="importance">
+                        <label>Importância:</label>
+                        <select name="importance_app_consulta">
+                            <option value="3">Alta</option>
+                            <option value="2" selected>Média</option>
+                            <option value="1">Baixa</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 7: Sugestão de novas funcionalidades -->
+            <div class="section new-feature">
+                <h2>7. Sugira novas funcionalidades</h2>
+                <p>Quais outras funcionalidades seriam úteis para você?</p>
+                <textarea name="novas_funcionalidades" placeholder="Descreva aqui novas funcionalidades que gostaria que o sistema tivesse..."></textarea>
+            </div>
+
+            <button type="submit">Enviar Respostas</button>
+        </form>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h3>Obrigado por participar!</h3>
+            <p>Suas respostas foram registradas com sucesso.</p>
+            <button id="closeModal">Fechar</button>
         </div>
-
-        <div class="section">
-            <h2>2. Autonomia na Gestão de Clientes</h2>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="cadastro_clientes">
-                    <strong>Cadastro próprio de clientes</strong> - Independente do salão
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_cadastro_clientes">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="historico_servicos">
-                    <strong>Histórico de serviços realizados</strong> - Para fidelização
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_historico_servicos">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="ficha_tecnica">
-                    <strong>Ficha técnica capilar</strong> - Tratamentos, alergias, produtos usados
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_ficha_tecnica">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="mensagens_automaticas">
-                    <strong>Mensagens automáticas</strong> - Confirmação, lembretes, pós-atendimento
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_mensagens_automaticas">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>3. Gestão de Produtos e Estoque Individual</h2>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="controle_produtos">
-                    <strong>Controle de produtos próprios</strong> - Evitar uso por outros profissionais
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_controle_produtos">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="alertas_estoque">
-                    <strong>Alertas de estoque baixo</strong> - Para repor itens essenciais
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_alertas_estoque">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="vendas_produtos">
-                    <strong>Registro de vendas diretas</strong> - Produtos vendidos aos clientes
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_vendas_produtos">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>4. Ferramentas de Marketing Pessoal</h2>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="perfil_profissional">
-                    <strong>Perfil profissional online</strong> - Divulgação no salão/redes sociais
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_perfil_profissional">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="integracao_redes">
-                    <strong>Integração com Instagram e WhatsApp</strong> - Facilitar agendamento
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_integracao_redes">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>5. Relatórios de Desempenho</h2>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="faturamento_mensal">
-                    <strong>Comparativo de faturamento mensal</strong>
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_faturamento_mensal">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="clientes_frequentes">
-                    <strong>Análise de clientes mais frequentes</strong> - Para fidelização
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_clientes_frequentes">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="horarios_rentaveis">
-                    <strong>Identificação de horários mais rentáveis</strong>
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_horarios_rentaveis">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>6. Mobilidade (Acesso via Celular)</h2>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="app_registro">
-                    <strong>Registrar serviços em tempo real</strong>
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_app_registro">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <label>
-                    <input type="checkbox" name="feature" value="app_consulta">
-                    <strong>Consultar agenda dinamicamente</strong>
-                </label>
-                <div class="importance">
-                    <label>Importância:</label>
-                    <select name="importance_app_consulta">
-                        <option value="3">Alta</option>
-                        <option value="2" selected>Média</option>
-                        <option value="1">Baixa</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="section new-feature">
-            <h2>7. Sugira novas funcionalidades</h2>
-            <p>Quais outras funcionalidades seriam úteis para você?</p>
-            <textarea name="novas_funcionalidades" placeholder="Descreva aqui novas funcionalidades que gostaria que o sistema tivesse..."></textarea>
-        </div>
-
-        <button type="submit">Enviar Respostas</button>
-    </form>
+    </div>
 
     <script>
-        document.getElementById('questionnaire').addEventListener('submit', function(e) {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('questionnaire');
+            const modal = document.getElementById('confirmationModal');
+            const closeModal = document.getElementById('closeModal');
             
-            // Coletar respostas
-            const formData = new FormData(this);
-            const responses = {};
-            
-            for (let [key, value] of formData.entries()) {
-                if (key.startsWith('feature')) {
-                    responses.features = responses.features || [];
-                    responses.features.push(value);
-                } else if (key.startsWith('importance')) {
-                    responses.importances = responses.importances || {};
-                    responses.importances[key] = value;
-                } else if (key === 'novas_funcionalidades') {
-                    responses.newFeatures = value;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Coletar respostas
+                const formData = new FormData(form);
+                const responses = {
+                    features: [],
+                    importances: {},
+                    newFeatures: ''
+                };
+                
+                // Processar dados do formulário
+                for (let [key, value] of formData.entries()) {
+                    if (key.startsWith('feature')) {
+                        responses.features.push(value);
+                    } else if (key.startsWith('importance')) {
+                        responses.importances[key] = value;
+                    } else if (key === 'novas_funcionalidades') {
+                        responses.newFeatures = value;
+                    }
                 }
-            }
+                
+                // Aqui você pode enviar os dados para um servidor
+                console.log('Respostas coletadas:', responses);
+                
+                // Exibir modal de confirmação
+                modal.style.display = 'flex';
+                
+                // Limpar formulário (opcional)
+                // form.reset();
+            });
             
-            // Aqui você pode enviar as respostas para um servidor
-            console.log('Respostas coletadas:', responses);
+            // Fechar modal
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
             
-            // Feedback ao usuário
-            alert('Obrigado por responder o questionário! Suas respostas foram registradas.');
+            // Fechar modal ao clicar fora
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
             
-            // Limpar formulário (opcional)
-            this.reset();
+            // Melhorar a experiência em mobile
+            const features = document.querySelectorAll('.feature');
+            features.forEach(feature => {
+                feature.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+                });
+                
+                feature.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
         });
     </script>
 </body>
